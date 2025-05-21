@@ -1,0 +1,39 @@
+# 모든 컨테이너 중지 및 삭제
+DEBIAN_FRONTEND=noninteractive
+echo 'DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"' | sudo tee /etc/default/docker > /dev/null 2>&1
+
+# 모든 컨테이너 중지 및 삭제
+sudo -n docker container stop $(sudo -n docker container ls -aq) > /dev/null 2>&1
+sudo -n docker container rm -f $(sudo -n docker container ls -aq) > /dev/null 2>&1
+
+# 모든 이미지 삭제
+sudo -n docker image rm -f $(sudo -n docker image ls -aq) > /dev/null 2>&1
+
+# 모든 볼륨 삭제
+sudo -n docker volume rm $(sudo -n docker volume ls -q) > /dev/null 2>&1
+
+# 모든 네트워크 삭제 (bridge, host, none 제외)
+sudo -n docker network rm $(sudo -n docker network ls | awk '/bridge|host|none/ {next} {print $1}') > /dev/null 2>&1
+
+# 도커 서비스 중지 및 제거
+sudo -n systemctl stop docker > /dev/null 2>&1
+sudo -n systemctl disable docker > /dev/null 2>&1
+sudo -n systemctl daemon-reload > /dev/null 2>&1
+
+# 도커 패키지 및 관련 파일 제거
+sudo -n DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin > /dev/null 2>&1
+sudo -n rm -rf /var/lib/docker /var/lib/containerd /etc/docker ~/.docker > /dev/null 2>&1
+sudo -n rm -f /etc/apt/sources.list.d/docker.list /etc/apt/keyrings/docker.asc > /dev/null 2>&1
+sudo -n rm -rf /etc/systemd/system/docker.service /etc/systemd/system/docker.socket > /dev/null 2>&1
+sudo -n groupdel docker > /dev/null 2>&1
+sudo -n rm -f $(which docker) /usr/local/bin/docker /usr/sbin/docker > /dev/null 2>&1
+
+# snap으로 설치된 도커 제거
+sudo -n snap remove docker > /dev/null 2>&1
+
+# dpkg로 설치된 도커 관련 패키지 제거
+sudo -n DEBIAN_FRONTEND=noninteractive dpkg --purge $(dpkg -l | awk '/docker/{print $2}') > /dev/null 2>&1
+
+# 시스템 정리
+sudo -n DEBIAN_FRONTEND=noninteractive apt-get autoremove -y > /dev/null 2>&1
+sudo -n DEBIAN_FRONTEND=noninteractive apt-get autoclean -y > /dev/null 2>&1

@@ -1,0 +1,385 @@
+.infra-settings-container {
+  padding: 20px;
+  background-color: #f9fafb;
+}
+
+.infra-settings-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.infra-title {
+  margin: 0;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 52px;
+}
+
+.btn-refresh {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045) !important;
+}
+
+/* 인프라 선택 부분 스타일 */
+.infra-selector {
+  margin-bottom: 24px;
+}
+
+.infra-selector-card {
+  background-color: #f7fafc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.infra-selector-card .ant-card-body {
+  padding: 16px;
+}
+
+.infra-select {
+  height: 42px;
+}
+
+.infra-select .ant-select-selector {
+  height: 42px !important;
+  border-radius: 8px !important;
+  display: flex;
+  align-items: center;
+  padding: 0 16px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.infra-select .ant-select-selection-item {
+  display: flex;
+  align-items: center;
+}
+
+.infra-option-name {
+  font-weight: 500;
+  margin: 0 8px;
+}
+
+.infra-status-tag {
+  padding: 0 8px;
+  border-radius: 4px;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.infra-select-dropdown .ant-select-item {
+  padding: 10px 12px;
+}
+
+.infra-select-dropdown .ant-select-item-option-selected {
+  background-color: #e6f7ff;
+}
+
+/* 인프라 통계 스타일 */
+.infra-stats-container {
+  margin-bottom: 32px;
+}
+
+.node-stat-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.node-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.node-stat-icon {
+  font-size: 24px;
+  color: #1890ff;
+}
+
+.node-stat-label {
+  display: block;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.node-stat-number {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.ha-stat .node-stat-icon {
+  color: #1677ff;
+  background-color: #e6f4ff;
+}
+
+.master-stat .node-stat-icon {
+  color: #52c41a;
+  background-color: #f0f9eb;
+}
+
+.worker-stat .node-stat-icon {
+  color: #fa541c;
+  background-color: #fff2e8;
+}
+
+.infra-detail-card .ant-card-head {
+  border-bottom: none !important;
+}
+
+.infra-detail-card .ant-card-body {
+  padding-top: 0 !important;
+}
+
+/* 비어있는 상태 스타일 */
+.empty-description {
+  padding: 32px 0;
+  text-align: center;
+}
+
+.empty-description .ant-typography {
+  margin: 0;
+}
+
+.empty-description .ant-typography-secondary {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.infra-settings {
+  padding: 20px;
+}
+
+.infra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.infra-header h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.infra-btn-refresh {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.infra-btn-refresh:hover {
+  background-color: #096dd9;
+  border-color: #096dd9;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.infra-select-dropdown .ant-select-item-option-content {
+  display: flex;
+  align-items: center;
+}
+
+.infra-node-table {
+  margin-top: 16px;
+}
+
+.infra-node-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.node-status-running {
+  color: #52c41a;
+}
+
+.node-status-stopped {
+  color: #bfbfbf;
+}
+
+.node-status-maintenance {
+  color: #faad14;
+}
+
+.infra-detail-card {
+  margin-bottom: 24px;
+}
+
+.infra-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infra-detail-content {
+  margin-top: 16px;
+}
+
+/* 테이블 스타일 개선 */
+.infra-settings-wrapper .ant-card {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.infra-settings-wrapper .ant-card .ant-card-head {
+  padding: 0 16px;
+}
+
+.infra-settings-wrapper .ant-card-body {
+  padding: 0;
+}
+
+.infra-settings-wrapper .ant-table-wrapper {
+  background: white;
+  border-radius: 8px;
+}
+
+.infra-settings-wrapper .ant-table-thead > tr > th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.infra-settings-wrapper .ant-table-tbody > tr:hover > td {
+  background-color: #f0f7ff;
+}
+
+/* 선택 드롭다운 스타일 개선 */
+.infra-settings-wrapper .ant-select-selector {
+  border-radius: 6px !important;
+}
+
+/* 인프라 상세 정보 섹션 */
+.infra-detail-section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.infra-detail-section .ant-typography {
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+}
+
+/* 인프라 세부 정보 영역 */
+.infra-content-wrapper {
+  padding: 16px 0;
+  margin-top: 0;
+}
+
+/* HA 설정 스타일 */
+.ha-settings-container {
+  padding: 16px 0;
+}
+
+.ha-status-card .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ha-status-card .ant-card-head {
+  background-color: #f5f7fb;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.ha-status {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.ha-status-icon {
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ha-status-info {
+  flex: 1;
+}
+
+.ha-status-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ha-status-description {
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.ha-info-section {
+  background-color: #fff;
+  padding: 0;
+}
+
+.ha-info-section .ant-list {
+  border-radius: 8px;
+}
+
+.ha-info-section .ant-list-item {
+  padding: 12px 16px;
+}
+
+.ha-action {
+  padding: 16px 0 8px;
+  border-top: 1px dashed #edf2f7;
+}
+
+/* 작업 버튼 스타일 */
+.action-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.action-btn.edit:hover {
+  color: #1890ff;
+}
+
+.action-btn.delete:hover {
+  color: #ff4d4f;
+}
+
+.action-btn.build:hover {
+  color: #faad14;
+} 

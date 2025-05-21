@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+                        
+        k8scontrol-db:
+                build: .
+                image: harbor.mipllab.com/lw/k8scontrol-db:latest
+                container_name: k8scontrol-db
+                ports:
+                        - "3306:3306"
+                volumes:
+                        - ./.data:/var/lib/mysql
+        

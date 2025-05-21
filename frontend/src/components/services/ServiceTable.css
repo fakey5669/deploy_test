@@ -1,0 +1,106 @@
+.status-cell {
+  display: flex;
+  align-items: center;
+}
+
+.status-tag {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.status-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* 활성 상태 */
+.status-tag.active {
+  background-color: #e6f7e6;
+}
+
+.status-circle.active {
+  background-color: #52c41a;
+}
+
+.status-text.active {
+  color: #52c41a;
+}
+
+/* 비활성 상태 */
+.status-tag.inactive {
+  background-color: #f5f5f5;
+}
+
+.status-circle.inactive {
+  background-color: #d9d9d9;
+}
+
+.status-text.inactive {
+  color: #8c8c8c;
+}
+
+/* 등록 상태 */
+.status-tag.registered {
+  background-color: #e6f4ff;
+}
+
+.status-circle.registered {
+  background-color: #1677ff;
+}
+
+.status-text.registered {
+  color: #1677ff;
+}
+
+/* 알 수 없음 상태 */
+.status-tag.unknown {
+  background-color: #f0f0f0;
+}
+
+.status-circle.unknown {
+  background-color: #faad14;
+}
+
+.status-text.unknown {
+  color: #faad14;
+}
+
+/* 작업 버튼 스타일 */
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 4px 8px;
+}
+
+/* GitLab 셀 스타일 */
+.gitlab-cell {
+  display: flex;
+  align-items: center;
+}
+
+.gitlab-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.gitlab-button.registered {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+.gitlab-button.not-registered {
+  background-color: #fff1f0;
+  color: #ff4d4f;
+} 

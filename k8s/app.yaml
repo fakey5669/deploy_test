@@ -1,0 +1,169 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8scontrol-frontend
+  labels:
+    app: k8scontrol-frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: frontend
+  selector:
+    app: k8scontrol-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8scontrol-frontend
+  namespace: k8s-control
+spec:
+  selector:
+    matchLabels:
+      app: k8scontrol-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8scontrol-frontend
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: k8scontrol-frontend
+          image: harbor.mipllab.com/lw/k8scontrol-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: frontend
+          env:
+            - name: REACT_APP_API_URL
+              value: "https://kc.mipllab.com/api/v1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8scontrol-backend
+  labels:
+    app: k8scontrol-backend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: backend
+  selector:
+    app: k8scontrol-backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8scontrol-backend
+  namespace: k8s-control
+spec:
+  selector:
+    matchLabels:
+      app: k8scontrol-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8scontrol-backend
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: k8scontrol-backend
+          image: harbor.mipllab.com/lw/k8scontrol-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8scontrol-db
+  labels:
+    app: k8scontrol-db
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: k8scontrol-db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8scontrol-db
+  namespace: k8s-control
+spec:
+  selector:
+    matchLabels:
+      app: k8scontrol-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8scontrol-db
+    spec:
+      volumes:
+        - name: k8scontrol-db-storage
+          persistentVolumeClaim:
+            claimName: pvc-8g-k8scontrol-db
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: k8scontrol-db
+          image: harbor.mipllab.com/lw/k8scontrol-db:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: k8scontrol-db-storage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  namespace: k8s-control
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              value: "k8scontrol-db"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin
+  namespace: k8s-control
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: phpmyadmin
+---

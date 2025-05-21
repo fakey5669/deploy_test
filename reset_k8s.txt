@@ -1,0 +1,59 @@
+sudo kubeadm reset -f
+
+# 1. 남아있는 CNI 설정 파일 제거 (이 부분은 kubeadm reset에서 자동으로 정리되지 않는다고 메시지에 나와있음)
+sudo rm -rf /etc/cni/net.d/*
+
+# 2. iptables 규칙 정리 (수동으로 해야 한다고 메시지에 나와있음)
+sudo iptables -F
+sudo iptables -t nat -F
+sudo iptables -t mangle -F
+sudo iptables -X
+
+# 3. IPVS 테이블 정리 (클러스터가 IPVS를 사용한 경우)
+sudo ipvsadm --clear
+
+# 4. kubeconfig 파일 정리 (이것도 수동으로 해야 한다고 메시지에 있음)
+sudo rm -rf /root/.kube
+sudo rm -rf /etc/kubernetes/admin.conf
+sudo rm -rf /etc/kubernetes/kubelet.conf
+
+sudo systemctl stop kubelet
+sudo systemctl stop containerd
+
+sudo pkill -9 kube-apiserver
+sudo pkill -9 kube-scheduler
+sudo pkill -9 kube-controller-manager
+sudo umount -l /var/lib/kubelet/pods/*
+sudo rm -rf /var/lib/kubelet/pods/*
+
+# 5. 남아있는 쿠버네티스 관련 디렉토리 강제 정리
+sudo rm -rf /var/lib/kubelet
+sudo rm -rf /var/lib/etcd
+sudo rm -rf /etc/kubernetes
+
+# 6. systemd 서비스 중지 및 비활성화
+sudo systemctl stop kubelet
+sudo systemctl disable kubelet
+
+sudo apt remove --allow-change-held-packages -y kubeadm kubectl kubelet
+# kubectl 바이너리 제거
+sudo apt remove -y kubectl kubeadm kubelet kubernetes-cni  # Debian/Ubuntu 기반
+
+# 관련 디렉토리 정리
+sudo rm -rf /opt/cni
+sudo rm -rf /usr/bin/kubectl
+sudo rm -rf /usr/bin/kubeadm
+sudo rm -rf /usr/bin/kubelet
+
+sudo apt-get purge kubeadm kubectl kubelet
+
+# 패키지 캐시 정리
+sudo apt-get clean
+sudo apt-get autoremove -y
+
+sudo systemctl stop kubelet
+sudo systemctl stop containerd
+sudo pkill -9 kube-apiserver
+
+sudo systemctl disable kubelet
+sudo systemctl disable containerd

@@ -1,0 +1,1506 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.system-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.system-container.full-width {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.services-container {
+  padding: 20px;
+  background-color: #f9fafb;
+}
+
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.services-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.services-search {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0px;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.btn-create {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-create:hover {
+  background-color: #0069d9;
+}
+
+.no-services {
+  text-align: center;
+  padding: 40px 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.services-list {
+  padding: 0 24px;
+}
+
+.services-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.services-list th {
+  padding: 12px 16px;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: normal;
+  font-size: 14px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.services-list td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.services-list tr:hover {
+  background-color: #fafafa;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-view,
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-view {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-view:hover {
+  background-color: #138496;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1rem;
+}
+
+.error {
+  padding: 20px;
+  background-color: #fff3f3;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  color: #dc3545;
+  margin: 0;
+}
+
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.system-header h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.btn-home {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-home:hover {
+  background-color: #e9ecef;
+}
+
+.tab-menu {
+  display: flex;
+  background-color: #fff;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0;
+  position: sticky;
+  top: 50px;
+  z-index: 99;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.tab-item {
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.tab-icon {
+  margin-right: 6px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tab-item:hover {
+  color: #1890ff;
+}
+
+.tab-item.active {
+  border-bottom-color: #1890ff;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.service-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.service-tag {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.service-tag-icon {
+  font-size: 18px;
+  margin-right: 8px;
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+}
+
+.service-tag-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.service-tag-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.service-tag-button {
+  margin-left: auto;
+}
+
+.section-stats {
+  display: flex;
+  gap: 24px;
+  padding: 0 24px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-label {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+  line-height: 1.2;
+}
+
+.service-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 26px 0px;
+}
+
+.search-input {
+  flex-grow: 1;
+  max-width: 300px;
+  margin-left: auto;
+}
+
+.btn-create-service {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: #1677ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-create-service:hover {
+  background-color: #4096ff;
+}
+
+.btn-refresh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-refresh:hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.btn-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-filter:hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.search-container {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-indicator.active .status-dot {
+  background-color: #52c41a;
+}
+
+.status-indicator.inactive .status-dot {
+  background-color: #ff4d4f;
+}
+
+.status-text {
+  font-size: 14px;
+}
+
+.domain-link {
+  color: #1677ff;
+  text-decoration: none;
+}
+
+.domain-link:hover {
+  text-decoration: underline;
+}
+
+.cloud-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cloud-icon {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.infra-status {
+  font-size: 14px;
+}
+
+.infra-status.not-configured {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.btn-gitlab {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gitlab.registered {
+  background-color: #f6ffed;
+  color: #52c41a;
+  border: 1px solid #b7eb8f;
+}
+
+.btn-gitlab.not-registered {
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.45);
+  border: 1px solid #d9d9d9;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  transition: all 0.2s;
+}
+
+.btn-action svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-action.view:hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.btn-action.edit:hover {
+  color: #faad14;
+  border-color: #faad14;
+}
+
+.btn-action.delete:hover {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.pagination-info {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-arrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-arrow:not(:disabled):hover {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.pagination-current {
+  width: 32px;
+  height: 32px;
+  background-color: #1677ff;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.pagination-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+
+.pagination-per-page:hover {
+  border-color: #1677ff;
+}
+
+.service-detail-container,
+.service-form-container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  margin: 20px;
+  border: 1px solid #eee;
+}
+
+.service-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-detail-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.btn-back {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #e9ecef;
+}
+
+.service-detail-content {
+  margin-top: 20px;
+}
+
+.service-detail-section {
+  margin-bottom: 30px;
+}
+
+.service-detail-section h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-detail-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-label {
+  font-weight: 600;
+  width: 120px;
+  color: #555;
+}
+
+.info-value {
+  flex: 1;
+}
+
+.service-detail-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.service-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-form-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.service-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+.btn-submit:hover {
+  background-color: #0069d9;
+}
+
+.btn-submit:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.status-select {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.radio-label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.form-group input[type="radio"] {
+  width: auto;
+}
+
+.service-summary-tags {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.grid-icon {
+  color: #1890ff;
+}
+
+.play-icon {
+  color: #52c41a;
+}
+
+.pause-icon {
+  color: #faad14;
+}
+
+.summary-count {
+  font-size: 18px;
+  font-weight: 500;
+  color: #262626;
+}
+
+/* 페이지 제목 */
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* 서비스 통계 카드 */
+.service-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
+  flex: 1;
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 16px;
+  font-size: 24px;
+}
+
+.stat-icon.blue {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.stat-icon.green {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+.stat-icon.yellow {
+  background-color: #fffbe6;
+  color: #fa8c16;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* 서비스 카드 */
+.service-card {
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+  .service-stats {
+    flex-direction: column;
+  }
+  
+  .stat-card {
+    width: 100%;
+  }
+}
+
+/* 테이블 내 상태 표시 */
+.ant-badge-status-text {
+  margin-left: 8px;
+}
+
+/* 서비스 헤더 */
+.service-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.service-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* 서비스 목록 카드 */
+.service-list-card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* 테이블 툴바 */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  display: flex;
+  gap: 8px;
+}
+
+/* 목록 없을 때 */
+.empty-list {
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* 상세 페이지 스타일 */
+.service-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.info-label {
+  width: 150px;
+  color: #666;
+  font-size: 14px;
+}
+
+.info-value {
+  flex: 1;
+  font-size: 14px;
+}
+
+/* 모달 스타일 */
+.ant-modal-content {
+  border-radius: 8px;
+}
+
+/* 버튼 스타일 */
+.services-container .ant-btn {
+  border-radius: 8px;
+}
+
+/* 테이블 행 스타일 */
+.ant-table-tbody > tr > td {
+  padding: 12px 16px;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #fafafa;
+  padding: 12px 16px;
+}
+
+/* 페이지네이션 */
+.service-table .ant-pagination {
+  padding: 16px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.service-table .ant-pagination-item {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-table .ant-pagination-item-active {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.service-table .ant-pagination-item-active a {
+  color: #fff;
+}
+
+.service-table .ant-pagination-options {
+  display: flex;
+  align-items: center;
+}
+
+.service-table .ant-table-tbody > tr > td:last-child {
+  text-align: right;
+}
+
+.service-table .ant-table-column-title {
+  font-weight: 500;
+}
+
+/* 서비스 카운터 */
+.service-counter {
+  display: flex;
+  padding: 20px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.counter-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 22px;
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 0 8px;
+  margin-right: 8px;
+}
+
+.counter-icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+
+.counter-number {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.counter-blue {
+  background-color: #e6f4ff;
+  color: #0958d9;
+}
+
+.counter-green {
+  background-color: #f6ffed;
+  color: #52c41a;
+
+}
+
+.counter-gray {
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+/* 테이블 스타일 */
+.service-table {
+  padding: 0;
+  border: none;
+}
+
+.service-table .ant-table {
+  border-radius: 0;
+  border: none;
+}
+
+.service-table .ant-table-thead > tr > th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #333;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-top: none;
+  border-bottom: 1px solid #f0f0f0;
+  border-left: none;
+  border-right: none;
+}
+
+.service-table .ant-table-tbody > tr > td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  border-left: none;
+  border-right: none;
+}
+
+.service-table .ant-table-tbody > tr:hover > td {
+  background-color: #f5f7fa;
+}
+
+.service-table .ant-table-container,
+.service-table .ant-table-wrapper,
+.service-table .ant-spin-nested-loading,
+.service-table .ant-spin-container,
+.service-table .ant-table {
+  border: none;
+}
+
+.service-table .ant-table-cell-fix-left,
+.service-table .ant-table-cell-fix-right {
+  background: transparent;
+}
+
+/* 테이블 외곽선 제거 */
+.service-table .ant-table-container {
+  border: none !important;
+}
+
+.service-table .ant-table-wrapper::before {
+  display: none;
+}
+
+/* 서비스 이름 스타일 */
+.service-name {
+  font-weight: 600;
+}
+
+/* 테이블 헤더 타이틀 스타일 */
+.service-table .ant-table-column-title {
+  font-weight: 600;
+}
+
+/* 상태 셀 */
+.status-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-text {
+  font-size: 14px;
+}
+
+.status-detail {
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 1px 5px;
+  background-color: rgba(82, 196, 26, 0.1);
+  border-radius: 10px;
+  color: #52c41a;
+}
+
+.status-tag.active .status-circle {
+  background-color: #52c41a;
+}
+
+.status-tag.active .status-text {
+  color: #52c41a;
+}
+
+.status-tag.inactive .status-circle {
+  background-color: #9b9b9b;
+}
+
+.status-tag.inactive .status-text {
+  color: #9b9b9b;
+}
+
+.status-circle.registered {
+  background-color: #1677ff;
+}
+
+.status-text.registered {
+  color: #1677ff;
+}
+
+/* 도메인 셀 */
+.domain-cell {
+  display: flex;
+  align-items: center;
+}
+
+.domain-icon {
+  margin-right: 6px;
+  color: #1890ff;
+}
+
+.domain-link {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+.domain-link:hover {
+  text-decoration: underline;
+}
+
+/* 인프라 셀 */
+.infra-cell {
+  display: flex;
+  align-items: center;
+}
+
+.infra-icon {
+  margin-right: 6px;
+  color: #d9d9d9;
+}
+
+.infra-status {
+  color: #999;
+}
+
+/* GitLab 셀 */
+.gitlab-cell {
+  display: flex;
+  align-items: center;
+}
+
+.gitlab-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.gitlab-button.registered {
+  background-color: #e6f4ff;
+  color: #1677ff;
+  border: 1px solid #91caff;
+}
+
+.gitlab-button.not-registered {
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.45);
+  border: 1px solid #d9d9d9;
+}
+
+.gitlab-icon {
+  margin-right: 4px;
+}
+
+/* 액션 셀 */
+.action-cell {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.action-btn {
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px)!important;
+}
+
+/* .action-btn.view:hover {
+  color: #1890ff !important;
+  border-color: #1890ff !important;
+}
+
+.action-btn.edit:hover {
+  color: #52c41a !important;
+  border-color: #52c41a !important;
+}
+
+.action-btn.delete:hover {
+  color: #ff4d4f !important;
+  border-color: #ff4d4f !important;
+} */
+
+/* 서비스 생성 모달 */
+.service-form-section {
+  margin-bottom: 24px;
+}
+
+.service-form-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .service-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .search-input {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* 서비스 생성 모달 */
+.service-form-header {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.service-form-container {
+  padding: 0;
+}
+
+.service-form {
+  width: 100%;
+}
+
+.service-form .ant-form-item-label > label {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.domain-prefix {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.globe-icon {
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.btn-cancel {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-cancel:hover {
+  color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.btn-create {
+  background-color: #1677ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-create:hover {
+  background-color: #4096ff;
+}
+
+/* 모달 스타일 */
+.service-modal .ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.service-modal .ant-modal-header {
+  padding: 20px 24px;
+  border-bottom: none;
+}
+
+.service-modal .ant-modal-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.service-modal .ant-modal-body {
+  padding: 0 24px 24px 24px;
+}
+
+.service-modal .ant-input-group-addon {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.service-modal .ant-input-group-addon:hover {
+  color: #1890ff;
+}
+
+.service-modal .ant-form-item-label > label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.service-modal .ant-divider-inner-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.service-modal .ant-divider {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* 버튼 스타일 수정 */
+.service-modal .ant-btn {
+  height: 36px;
+  padding: 4px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-modal .ant-btn > span {
+  margin-left: 4px;
+}
+
+.service-modal .ant-btn-primary {
+  background-color: #1677ff;
+}
+
+.service-modal .ant-btn-primary:hover {
+  background-color: #4096ff;
+}
+
+/* 모달 내부 요소 간격 수정 */
+.service-modal .ant-form-item {
+  margin-bottom: 24px;
+}
+
+.service-modal .ant-form-item-label {
+  padding-bottom: 8px;
+}
+
+.service-modal .ant-input {
+  padding: 8px 11px;
+}
+
+.service-modal .ant-divider {
+  margin: 32px 0 24px;
+}
+
+.service-modal .ant-row {
+  margin-bottom: 8px;
+}
+
+/* GitLab 모달 스타일 */
+.gitlab-modal .ant-modal-header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px;
+}
+
+.gitlab-modal .ant-modal-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.gitlab-modal .ant-input-group-addon {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  transition: all 0.3s;
+}
+
+.gitlab-modal .ant-input-group-addon:hover {
+  color: #1890ff;
+}
+
+.gitlab-modal .ant-modal-footer {
+  border-top: 1px solid #f0f0f0;
+}
+
+/* GitLab 버튼 호버 스타일 */
+.gitlab-button.registered:hover {
+  background-color: #d9ecff;
+  cursor: pointer;
+}

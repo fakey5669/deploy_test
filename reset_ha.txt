@@ -1,0 +1,16 @@
+# 모든 haproxy 관련 패키지 완전히 제거
+sudo apt purge -y haproxy* haproxy
+sudo apt autoremove -y
+sudo dpkg --purge haproxy
+
+# 남아있는 디렉토리 및 파일 제거
+sudo rm -rf /etc/haproxy /var/lib/haproxy /var/log/haproxy /usr/local/sbin/haproxy
+
+# 서비스 중지 및 제거
+sudo systemctl stop haproxy
+sudo systemctl disable haproxy
+sudo rm -f /etc/systemd/system/haproxy.service
+sudo systemctl daemon-reload
+
+# 패키지 캐시 업데이트
+sudo apt update

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  k8scontrol-db:
+    image: harbor.mipllab.com/lw/k8scontrol-db:latest
+    container_name: k8scontrol-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - k8scontrol-db-data:/var/lib/mysql
+    networks:
+      - k8scontrol-network
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=https://kc.mipllab.com/api/v1
+    image: harbor.mipllab.com/lw/k8scontrol-frontend:latest
+    container_name: k8scontrol-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - k8scontrol-network
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: harbor.mipllab.com/lw/k8scontrol-backend:latest
+    container_name: k8scontrol-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_ENV=production
+      - DB_HOST=k8scontrol-db
+    depends_on:
+      - k8scontrol-db
+    restart: always
+    networks:
+      - k8scontrol-network
+
+networks:
+  k8scontrol-network:
+    driver: bridge
+
+volumes:
+  k8scontrol-db-data:
